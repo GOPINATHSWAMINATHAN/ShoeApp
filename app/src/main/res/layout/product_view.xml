@@ -106,34 +106,34 @@
                 android:layout_margin="10dp"
                 android:text="Lorem ipsum dolor sit amet, consectiaopthasfhaishfphasdpfhasphfdpasohfdpoashfdpohasdfpohasfdphaspdfhasphfdasphf" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/description_text"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+            <!--<LinearLayout-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_below="@id/description_text"-->
+                <!--android:layout_marginTop="10dp"-->
+                <!--android:orientation="horizontal">-->
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/description_text"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:background="#f76e33"
-                    android:text="Buy Now"
-                    android:textColor="#fff" />
+                <!--<Button-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_below="@id/description_text"-->
+                    <!--android:layout_margin="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#f76e33"-->
+                    <!--android:text="Buy Now"-->
+                    <!--android:textColor="#fff" />-->
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:background="#f76e33"
-                    android:text="ADD To cart"
-                    android:textColor="#fff" />
+                <!--<Button-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="wrap_content"-->
+                    <!--android:layout_margin="20dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:background="#f76e33"-->
+                    <!--android:text="ADD To cart"-->
+                    <!--android:textColor="#fff" />-->
 
 
-            </LinearLayout>
+            <!--</LinearLayout>-->
         </RelativeLayout>
 
     </android.support.v7.widget.CardView>
@@ -148,5 +148,5 @@
         app:itemBackground="@color/bgBottomNavigation"
         android:foreground="?attr/selectableItemBackground"
         app:itemTextColor="@android:color/black"
-        app:menu="@menu/navigation" />
+        app:menu="@menu/product_view_menu" />
 </android.support.design.widget.CoordinatorLayout>
