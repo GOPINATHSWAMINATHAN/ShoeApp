@@ -117,8 +117,13 @@ holder.thumbnail.setOnClickListener(new View.OnClickListener() {
 //                ft.addToBackStack(null);
 //                ft.commit();
 
+                Intent pIntent = new Intent(context, ProductActivityDemo.class);
+                Bundle pBundle = new Bundle();
+                pBundle.putString("imageurl", movieList.get(position).getImageUrl());
+                pIntent.putExtras(pBundle);
+                context.startActivity(pIntent);
 
-context.startActivity(new Intent(context, ProductActivityDemo.class));
+//context.startActivity(new Intent(context, ProductActivityDemo.class));
 //                FragmentTransaction transaction=((FragmentActivity(context)).getSupportFragmentManager().beginTransaction());
 //                transaction.replace(R.id.frame_container,fragment);
 //                transaction.addToBackStack(null);
