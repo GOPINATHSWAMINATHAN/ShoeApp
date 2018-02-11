@@ -4,142 +4,151 @@
     xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
-<ScrollView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent">
 
-    <android.support.v7.widget.CardView
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
-        android:clipChildren="false"
-        android:clipToPadding="false"
-        android:divider="@android:color/transparent"
-        android:dividerHeight="0.0px"
-        android:elevation="20dp"
-        app:cardCornerRadius="5dp"
-        card_view:cardElevation="10dp"
-        card_view:cardPreventCornerOverlap="false">
+        android:layout_height="match_parent">
 
-        <RelativeLayout
+        <android.support.v7.widget.CardView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_margin="20dp"
+            android:clipChildren="false"
+            android:clipToPadding="false"
+            android:divider="@android:color/transparent"
+            android:dividerHeight="0.0px"
+            android:elevation="20dp"
+            app:cardCornerRadius="5dp"
+            card_view:cardElevation="10dp"
+            card_view:cardPreventCornerOverlap="false">
 
-            <TextView
-                android:id="@+id/brand_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Adidas" />
-
-            <TextView
-                android:id="@+id/ratings"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@+id/brand_name"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="10dp"
-                android:text="Ratings" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_margin="10dp"
-                android:background="#336774"
-                android:padding="10dp"
-                android:text="200 SAR"
-                android:textColor="#fff" />
-
-            <android.support.v7.widget.CardView
-                android:id="@+id/image_card"
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:layout_below="@id/ratings"
-                android:layout_margin="20dp"
-                android:clipChildren="false"
-                android:clipToPadding="false"
-                android:divider="@android:color/transparent"
-                android:dividerHeight="0.0px"
-                android:elevation="20dp"
-                card_view:cardElevation="10dp"
-                card_view:cardPreventCornerOverlap="false">
+                android:layout_height="match_parent">
 
-                <ImageView
-                    android:id="@+id/product_images"
+                <TextView
+                    android:id="@+id/brand_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Adidas" />
+
+                <TextView
+                    android:id="@+id/ratings"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/brand_name"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:text="Ratings" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="10dp"
+                    android:background="#336774"
+                    android:padding="10dp"
+                    android:text="200 SAR"
+                    android:textColor="#fff" />
+
+                <android.support.v7.widget.CardView
+                    android:id="@+id/image_card"
                     android:layout_width="match_parent"
                     android:layout_height="150dp"
-                    android:layout_centerHorizontal="true"
-                    android:scaleType="fitXY"
-                    />
-            </android.support.v7.widget.CardView>
+                    android:layout_below="@id/ratings"
+                    android:layout_margin="20dp"
+                    android:clipChildren="false"
+                    android:clipToPadding="false"
+                    android:divider="@android:color/transparent"
+                    android:dividerHeight="0.0px"
+                    android:elevation="20dp"
+                    card_view:cardElevation="10dp"
+                    card_view:cardPreventCornerOverlap="false">
 
-            <com.hariofspades.incdeclibrary.IncDecCircular
-                android:id="@+id/incdec"
-                android:layout_width="100dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentRight="true"
-                android:layout_below="@id/image_card"
-                app:leftButtonColorTint="@color/colorPrimaryDark"
-                app:leftDrawable="@mipmap/minus"
-                app:leftDrawableTint="@color/white"
-                app:rightButtonColorTinit="@color/colorPrimary"
-                app:rightDrawable="@drawable/plus"
-                app:rightDrawableTint="@color/white"
-                app:textColor="@color/white"
-                app:textSize="34" />
+                    <ImageView
+                        android:id="@+id/product_images"
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:layout_centerHorizontal="true"
+                        android:scaleType="fitXY" />
+                </android.support.v7.widget.CardView>
 
-            <TextView
-                android:id="@+id/description"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/image_card"
-                android:layout_margin="10dp"
-                android:text="Description" />
+                <com.hariofspades.incdeclibrary.IncDecCircular
+                    android:id="@+id/incdec"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:layout_below="@id/image_card"
+                    app:leftButtonColorTint="@color/colorPrimaryDark"
+                    app:leftDrawable="@mipmap/minus"
+                    app:leftDrawableTint="@color/white"
+                    app:rightButtonColorTinit="@color/colorPrimary"
+                    app:rightDrawable="@drawable/plus"
+                    app:rightDrawableTint="@color/white"
+                    app:textColor="@color/white"
+                    app:textSize="34" />
 
-            <TextView
-                android:id="@+id/description_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/description"
-                android:layout_margin="10dp"
-                android:text="Lorem ipsum dolor sit amet, consectiaopthasfhaishfphasdpfhasphfdpasohfdpoashfdpohasdfpohasfdphaspdfhasphfdasphf" />
+                <TextView
+                    android:id="@+id/description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/image_card"
+                    android:layout_margin="10dp"
+                    android:text="Description" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_below="@id/description_text"
-                android:layout_marginTop="10dp"
-                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/description_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/description"
+                    android:layout_margin="10dp"
+                    android:text="Lorem ipsum dolor sit amet, consectiaopthasfhaishfphasdpfhasphfdpasohfdpoashfdpohasdfpohasfdphaspdfhasphfdasphf" />
 
-                <Button
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/description_text"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:background="#f76e33"
-                    android:text="Buy Now"
-                    android:textColor="#fff" />
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="20dp"
-                    android:layout_weight="1"
-                    android:background="#f76e33"
-                    android:text="ADD To cart"
-                    android:textColor="#fff" />
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_below="@id/description_text"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:background="#f76e33"
+                        android:text="Buy Now"
+                        android:textColor="#fff" />
+
+                    <Button
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="20dp"
+                        android:layout_weight="1"
+                        android:background="#f76e33"
+                        android:text="ADD To cart"
+                        android:textColor="#fff" />
 
 
-            </LinearLayout>
-        </RelativeLayout>
+                </LinearLayout>
+            </RelativeLayout>
 
-    </android.support.v7.widget.CardView>
+        </android.support.v7.widget.CardView>
 
-</ScrollView>
+    </ScrollView>
 
-
+    <android.support.design.widget.BottomNavigationView
+        android:id="@+id/navigation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:background="?android:attr/windowBackground"
+        android:foreground="?attr/selectableItemBackground"
+        app:itemBackground="@color/bgBottomNavigation"
+        app:itemTextColor="@android:color/black"
+        app:menu="@menu/product_view_menu" />
 
 </android.support.design.widget.CoordinatorLayout>

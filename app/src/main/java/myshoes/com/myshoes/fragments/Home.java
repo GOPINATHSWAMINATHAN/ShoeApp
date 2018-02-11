@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import myshoes.com.myshoes.Adapters.StoreAdapter;
+import myshoes.com.myshoes.MainActivity;
 import myshoes.com.myshoes.R;
 import myshoes.com.myshoes.model.HomeShop;
 
@@ -65,8 +66,6 @@ public class Home extends Fragment {
         name = v.findViewById(R.id.title);
         price = v.findViewById(R.id.price);
         discount=v.findViewById(R.id.discount);
-
-
         myShops = new ArrayList<>();
         mAdapter = new StoreAdapter(getActivity(), myShops);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);

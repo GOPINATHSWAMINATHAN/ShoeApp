@@ -1,6 +1,7 @@
 package myshoes.com.myshoes.Adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +25,7 @@ import java.util.List;
 import myshoes.com.myshoes.ProductView;
 import myshoes.com.myshoes.R;
 import myshoes.com.myshoes.model.HomeShop;
+import myshoes.com.myshoes.model.ProductActivityDemo;
 
 /**
  * Created by gopinath on 06/02/18.
@@ -106,15 +108,17 @@ holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                FragmentTransaction ft=((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-                Bundle bundle=new Bundle();
-                bundle.putString("imageurl",movieList.get(position).getImageUrl());
-                ProductView pv=new ProductView();
-                pv.setArguments(bundle);
-                ft.replace(R.id.frame_container,pv);
-                ft.addToBackStack(null);
-                ft.commit();
+//                FragmentTransaction ft=((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
+//                Bundle bundle=new Bundle();
+//                bundle.putString("imageurl",movieList.get(position).getImageUrl());
+//                ProductView pv=new ProductView();
+//                pv.setArguments(bundle);
+//                ft.replace(R.id.frame_container,pv);
+//                ft.addToBackStack(null);
+//                ft.commit();
 
+
+context.startActivity(new Intent(context, ProductActivityDemo.class));
 //                FragmentTransaction transaction=((FragmentActivity(context)).getSupportFragmentManager().beginTransaction());
 //                transaction.replace(R.id.frame_container,fragment);
 //                transaction.addToBackStack(null);
