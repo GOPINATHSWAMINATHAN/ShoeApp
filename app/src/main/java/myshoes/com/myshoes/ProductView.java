@@ -21,10 +21,11 @@ public class ProductView extends Fragment {
     ImageView productImage;
     String imageUrl;
 
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        imageUrl = getArguments().getString("imageurl");
+//        imageUrl = getArguments().getString("imageurl");
     }
 
     @Nullable
@@ -35,10 +36,10 @@ public class ProductView extends Fragment {
         View v = inflater.inflate(R.layout.product_view, container, false);
         //mViewFlipper = v.findViewById(R.id.product_images);
         productImage = v.findViewById(R.id.product_images);
-
-        Glide.with(getActivity())
-                .load(imageUrl)
-                .into(productImage);
+//
+//        Glide.with(getActivity())
+//                .load(imageUrl)
+//                .into(productImage);
         return v;
     }
 

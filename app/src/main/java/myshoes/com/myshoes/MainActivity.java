@@ -75,7 +75,7 @@ String firstTitle="Home";
                            s1.setSpan(new ForegroundColorSpan(Color.BLACK), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                            toolBar.setTitle(s1);
 
-                           fragment=new Category();
+                           fragment=new ProductView();
                            loadFragment(fragment);
                           // toolBar.setTitle("Categories");
                            return true;
