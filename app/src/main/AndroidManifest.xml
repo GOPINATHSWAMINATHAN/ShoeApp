@@ -17,6 +17,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".model.ProductActivityDemo"/></application>
+        <activity android:name=".ProductActivityDemo"/></application>
 
 </manifest>

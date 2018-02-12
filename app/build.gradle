@@ -43,6 +43,11 @@ dependencies {
     compile 'com.hariofspades.IncDec:incdeclibrary:0.0.5'
 
 
+    //Discrete ScrollView
+
+    compile 'com.yarolegovich:discrete-scrollview:1.4.4'
+
+
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 
 }

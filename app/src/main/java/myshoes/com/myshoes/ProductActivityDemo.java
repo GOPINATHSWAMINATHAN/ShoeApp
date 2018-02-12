@@ -1,4 +1,4 @@
-package myshoes.com.myshoes.model;
+package myshoes.com.myshoes;
 
 import android.os.Bundle;
 import android.os.PersistableBundle;

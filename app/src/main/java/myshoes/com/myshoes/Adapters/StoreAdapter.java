@@ -4,7 +4,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
@@ -22,10 +21,9 @@ import com.bumptech.glide.Glide;
 
 import java.util.List;
 
-import myshoes.com.myshoes.ProductView;
 import myshoes.com.myshoes.R;
 import myshoes.com.myshoes.model.HomeShop;
-import myshoes.com.myshoes.model.ProductActivityDemo;
+import myshoes.com.myshoes.ProductActivityDemo;
 
 /**
  * Created by gopinath on 06/02/18.
@@ -98,10 +96,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 holder.thumbnail.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View v) {
-        FragmentTransaction ft=((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
-        ft.replace(R.id.frame_container,new ProductView());
-        ft.addToBackStack(null);
-        ft.commit();
+//        FragmentTransaction ft=((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
+//        ft.replace(R.id.frame_container,new ProductView());
+//        ft.addToBackStack(null);
+//        ft.commit();
     }
 });
         holder.myRelative.setOnClickListener(new View.OnClickListener() {
