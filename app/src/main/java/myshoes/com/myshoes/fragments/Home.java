@@ -3,7 +3,6 @@ package myshoes.com.myshoes.fragments;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
-import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -15,13 +14,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import myshoes.com.myshoes.Adapters.StoreAdapter;
-import myshoes.com.myshoes.MainActivity;
+import myshoes.com.myshoes.adapters.StoreAdapter;
 import myshoes.com.myshoes.R;
 import myshoes.com.myshoes.model.HomeShop;
 

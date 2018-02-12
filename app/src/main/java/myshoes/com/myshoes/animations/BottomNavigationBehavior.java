@@ -1,4 +1,4 @@
-package myshoes.com.myshoes;
+package myshoes.com.myshoes.animations;
 
 import android.content.Context;
 import android.support.design.widget.BottomNavigationView;

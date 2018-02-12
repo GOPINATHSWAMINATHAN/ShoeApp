@@ -1,11 +1,9 @@
-package myshoes.com.myshoes.Adapters;
+package myshoes.com.myshoes.adapters;
 
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -23,7 +21,7 @@ import java.util.List;
 
 import myshoes.com.myshoes.R;
 import myshoes.com.myshoes.model.HomeShop;
-import myshoes.com.myshoes.ProductActivityDemo;
+import myshoes.com.myshoes.activities.ProductDetails;
 
 /**
  * Created by gopinath on 06/02/18.
@@ -115,13 +113,13 @@ holder.thumbnail.setOnClickListener(new View.OnClickListener() {
 //                ft.addToBackStack(null);
 //                ft.commit();
 
-                Intent pIntent = new Intent(context, ProductActivityDemo.class);
+                Intent pIntent = new Intent(context, ProductDetails.class);
                 Bundle pBundle = new Bundle();
                 pBundle.putString("imageurl", movieList.get(position).getImageUrl());
                 pIntent.putExtras(pBundle);
                 context.startActivity(pIntent);
 
-//context.startActivity(new Intent(context, ProductActivityDemo.class));
+//context.startActivity(new Intent(context, ProductDetails.class));
 //                FragmentTransaction transaction=((FragmentActivity(context)).getSupportFragmentManager().beginTransaction());
 //                transaction.replace(R.id.frame_container,fragment);
 //                transaction.addToBackStack(null);

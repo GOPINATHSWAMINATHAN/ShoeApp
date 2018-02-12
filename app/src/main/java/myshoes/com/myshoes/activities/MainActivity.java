@@ -1,4 +1,4 @@
-package myshoes.com.myshoes;
+package myshoes.com.myshoes.activities;
 
 import android.graphics.Color;
 import android.support.annotation.NonNull;
@@ -13,17 +13,14 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.style.ForegroundColorSpan;
 import android.view.MenuItem;
-import android.view.View;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import myshoes.com.myshoes.R;
+import myshoes.com.myshoes.animations.BottomNavigationBehavior;
 import myshoes.com.myshoes.fragments.Cart;
 import myshoes.com.myshoes.fragments.Category;
 import myshoes.com.myshoes.fragments.Home;
 import myshoes.com.myshoes.fragments.Orders;
 import myshoes.com.myshoes.fragments.Profile;
-import myshoes.com.myshoes.model.HomeShop;
 
 public class MainActivity extends AppCompatActivity {
 

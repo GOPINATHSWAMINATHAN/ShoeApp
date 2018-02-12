@@ -1,24 +1,22 @@
-package myshoes.com.myshoes;
+package myshoes.com.myshoes.activities;
 
 import android.os.Bundle;
-import android.os.PersistableBundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.BottomNavigationView;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
-import myshoes.com.myshoes.BottomNavigationBehavior;
 import myshoes.com.myshoes.R;
+import myshoes.com.myshoes.animations.BottomNavigationBehavior;
 
 /**
  * Created by gopinath on 11/02/18.
  */
 
-public class ProductActivityDemo extends AppCompatActivity {
+public class ProductDetails extends AppCompatActivity {
 String imageUrl;
 ImageView productImage;
 BottomNavigationView navigation;
