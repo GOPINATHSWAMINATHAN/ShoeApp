@@ -29,11 +29,12 @@ import myshoes.com.myshoes.model.HomeShop;
 public class Home extends Fragment {
 
     RecyclerView recyclerView;
-    TextView name,price,discount;
+    TextView name, price, discount;
 
     List<HomeShop> myShops;
     private StoreAdapter mAdapter;
     public static View.OnClickListener myOnClickListener;
+
     public Home() {
 
     }
@@ -62,7 +63,7 @@ public class Home extends Fragment {
         recyclerView = v.findViewById(R.id.recycler_view);
         name = v.findViewById(R.id.title);
         price = v.findViewById(R.id.price);
-        discount=v.findViewById(R.id.discount);
+        discount = v.findViewById(R.id.discount);
         myShops = new ArrayList<>();
         mAdapter = new StoreAdapter(getActivity(), myShops);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -134,7 +135,7 @@ public class Home extends Fragment {
         }
     }
 
-        private void fetchStoreItems() {
+    private void fetchStoreItems() {
         myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F2mfFLz12RhMUi6gYQt7w2Td04l43?alt=media&token=0e9653a1-07bf-4aad-b355-5ab83ca5f1a1", "High Quality leather Shoe", "123", 23.3, 30));
         myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2FbBF11AA6UDOIdyaHrhiPD1NJXbA2?alt=media&token=bb81ccc2-c5c6-4397-9667-b8c860f2c1ec", "High Quality leather Shoe", "123", 23.3, 30));
         myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));

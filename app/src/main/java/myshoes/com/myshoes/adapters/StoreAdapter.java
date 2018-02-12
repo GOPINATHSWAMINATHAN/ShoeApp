@@ -32,9 +32,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     private List<HomeShop> movieList;
 
 
-
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        public TextView name, price,discount;
+        public TextView name, price, discount;
         public ImageView thumbnail;
         public CardView myCardView;
         LinearLayout myLinearLayout;
@@ -43,14 +42,14 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         public MyViewHolder(View view) {
             super(view);
 
-            context=view.getContext();
+            context = view.getContext();
             name = view.findViewById(R.id.title);
             price = view.findViewById(R.id.price);
             thumbnail = view.findViewById(R.id.thumbnail);
-            myCardView=view.findViewById(R.id.card_view);
-            myLinearLayout=view.findViewById(R.id.myLinearLayout);
-            myRelative=view.findViewById(R.id.myRelative);
-            discount=view.findViewById(R.id.discount);
+            myCardView = view.findViewById(R.id.card_view);
+            myLinearLayout = view.findViewById(R.id.myLinearLayout);
+            myRelative = view.findViewById(R.id.myRelative);
+            discount = view.findViewById(R.id.discount);
 
             Typeface font = Typeface.createFromAsset(context.getAssets(), "Nunito-Regular.ttf");
             name.setTypeface(font);
@@ -72,11 +71,11 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     public MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.store_home, parent, false);
-        MyViewHolder myViewHolder=new MyViewHolder(itemView);
+        MyViewHolder myViewHolder = new MyViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context,"Item clicked is true",Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Item clicked is true", Toast.LENGTH_LONG).show();
             }
         });
         return myViewHolder;
@@ -91,15 +90,15 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         Glide.with(context)
                 .load(movie.getImageUrl())
                 .into(holder.thumbnail);
-holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
+        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 //        FragmentTransaction ft=((FragmentActivity)context).getSupportFragmentManager().beginTransaction();
 //        ft.replace(R.id.frame_container,new ProductView());
 //        ft.addToBackStack(null);
 //        ft.commit();
-    }
-});
+            }
+        });
         holder.myRelative.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -124,7 +123,7 @@ holder.thumbnail.setOnClickListener(new View.OnClickListener() {
 //                transaction.replace(R.id.frame_container,fragment);
 //                transaction.addToBackStack(null);
 //                transaction.commit();
-                Toast.makeText(context,"Position is "+movieList.get(position).getImageUrl(),Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Position is " + movieList.get(position).getImageUrl(), Toast.LENGTH_LONG).show();
             }
         });
 
