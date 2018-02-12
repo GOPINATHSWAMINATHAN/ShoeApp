@@ -38,7 +38,7 @@ String firstTitle="Home";
        toolBar= getSupportActionBar();
         SpannableString s = new SpannableString(firstTitle);
         s.setSpan(new ForegroundColorSpan(Color.BLACK), 0, firstTitle.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
-        toolBar.setTitle(s);
+      toolBar.setTitle(s);
         loadFragment(new Home());
          navigation = (BottomNavigationView) findViewById(R.id.navigation);
 
