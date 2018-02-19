@@ -11,7 +11,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 
 import com.mikhaellopez.circularimageview.CircularImageView;
 
@@ -22,6 +24,8 @@ import myshoes.com.myshoes.R;
  */
 
 public class Profile extends Fragment {
+    TextView nameLabel, phoneLabel, addressLabel;
+    Button confirm;
     private EditText mNameField, mPhoneField, mAddressField;
     private CircularImageView mProfileImage;
     private Uri resultUri;
@@ -36,19 +40,27 @@ public class Profile extends Fragment {
         mNameField = (EditText) v.findViewById(R.id.name);
         mPhoneField = (EditText) v.findViewById(R.id.phone);
         mAddressField = (EditText) v.findViewById(R.id.car);
+        nameLabel = (TextView) v.findViewById(R.id.name_label);
+        phoneLabel = (TextView) v.findViewById(R.id.phone_label);
+        addressLabel = (TextView) v.findViewById(R.id.address_label);
+        confirm = (Button) v.findViewById(R.id.confirm);
         Typeface custom_font = Typeface.createFromAsset(getActivity().getAssets(), "Nunito-Regular.ttf");
 
         mNameField.setTypeface(custom_font);
         mPhoneField.setTypeface(custom_font);
         mAddressField.setTypeface(custom_font);
-        mProfileImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Intent.ACTION_PICK);
-                intent.setType("image/*");
-                startActivityForResult(intent, 1);
-            }
-        });
+        nameLabel.setTypeface(custom_font);
+        phoneLabel.setTypeface(custom_font);
+        addressLabel.setTypeface(custom_font);
+        confirm.setTypeface(custom_font);
+//        mProfileImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent intent = new Intent(Intent.ACTION_PICK);
+//                intent.setType("image/*");
+//                startActivityForResult(intent, 1);
+//            }
+//        });
 
         return v;
     }
