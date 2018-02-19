@@ -33,20 +33,21 @@ public class Category extends Fragment {
     public static TabLayout tabLayout;
     public static ViewPager viewPager;
     MyAdapter mAdapter;
+    Toolbar toolbar;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
-        View x =  inflater.inflate(R.layout.category_fragment,null);
+        View x = inflater.inflate(R.layout.category_fragment, null);
         tabLayout = (TabLayout) x.findViewById(R.id.tabsProduct);
         viewPager = (ViewPager) x.findViewById(R.id.viewpag);
-final Toolbar toolbar=x.findViewById(R.id.toolbar);
+        final Toolbar toolbar = x.findViewById(R.id.toolbar);
 
-        AppBarLayout appBarLayout = (AppBarLayout)x.findViewById(R.id.appbar);
+        AppBarLayout appBarLayout = (AppBarLayout) x.findViewById(R.id.appbar);
         appBarLayout.setExpanded(false, false);
 
-        ((AppCompatActivity)getActivity()).getSupportActionBar().hide();
+
         mAdapter = new MyAdapter(getChildFragmentManager());
         viewPager.setAdapter(mAdapter);
         //viewPager.setAdapter(new TabProductFragment.MyAdapter(getChildFragmentManager()));
@@ -58,43 +59,42 @@ final Toolbar toolbar=x.findViewById(R.id.toolbar);
 
             }
         });
-tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-    @RequiresApi(api = Build.VERSION_CODES.M)
-    @Override
-    public void onTabSelected(TabLayout.Tab tab) {
-        int colorFrom = ((ColorDrawable) toolbar.getBackground()).getColor();
-        int colorTo = getColorForTab(tab.getPosition());
-
-
-        ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
-        colorAnimation.setDuration(250);
-        colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @RequiresApi(api = Build.VERSION_CODES.M)
             @Override
-            public void onAnimationUpdate(ValueAnimator animation) {
-                int color = (int) animation.getAnimatedValue();
+            public void onTabSelected(TabLayout.Tab tab) {
+                int colorFrom = ((ColorDrawable) toolbar.getBackground()).getColor();
+                int colorTo = getColorForTab(tab.getPosition());
 
-                toolbar.setBackgroundColor(color);
-                tabLayout.setBackgroundColor(color);
 
-                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-                    getActivity().getWindow().setStatusBarColor(color);
-                }
+                ValueAnimator colorAnimation = ValueAnimator.ofObject(new ArgbEvaluator(), colorFrom, colorTo);
+                colorAnimation.setDuration(250);
+                colorAnimation.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+                    @Override
+                    public void onAnimationUpdate(ValueAnimator animation) {
+                        int color = (int) animation.getAnimatedValue();
+                        toolbar.setBackgroundColor(color);
+                        tabLayout.setBackgroundColor(color);
+
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                            getActivity().getWindow().setStatusBarColor(color);
+                        }
+                    }
+
+                });
+                colorAnimation.start();
             }
 
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
         });
-        colorAnimation.start();
-    }
-
-    @Override
-    public void onTabUnselected(TabLayout.Tab tab) {
-
-    }
-
-    @Override
-    public void onTabReselected(TabLayout.Tab tab) {
-
-    }
-});
 
         //  viewPager.setOnPageChangeListener(pageChangeListener);
 
@@ -109,15 +109,19 @@ tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
         switch (position) {
             case 0:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
+
                     return getResources().getColor(R.color.colorPrimaryDark, getActivity().getTheme());
+
                 return getResources().getColor(R.color.colorPrimaryDark);
             case 1:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                     return getResources().getColor(R.color.bgTitleLeft, getActivity().getTheme());
+
                 return getResources().getColor(R.color.bgTitleLeft);
             case 2:
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP)
                     return getResources().getColor(R.color.btnRequest, getActivity().getTheme());
+
                 return getResources().getColor(R.color.btnRequest);
             default:
                 return 0;
@@ -126,7 +130,7 @@ tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
     }
 
 
-    /*private ViewPager.OnPageChangeListener pageChangeListener;
+    private ViewPager.OnPageChangeListener pageChangeListener;
 
     {
         pageChangeListener = new ViewPager.OnPageChangeListener() {
@@ -136,8 +140,18 @@ tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onPageSelected(int newPosition) {
 
-
-              //  mAdapter.notifyDataSetChanged();
+                switch (newPosition) {
+                    case 0:
+                        toolbar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+                        break;
+                    case 1:
+                        toolbar.setBackgroundColor(getResources().getColor(R.color.bgTitleLeft));
+                        break;
+                    case 2:
+                        toolbar.setBackgroundColor(getResources().getColor(R.color.btnRequest));
+                        break;
+                }
+                //  mAdapter.notifyDataSetChanged();
 
             }
 
@@ -148,9 +162,9 @@ tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             public void onPageScrollStateChanged(int arg0) {
             }
         };
-    }*/
+    }
 
-    public void setItem(int item ){
+    public void setItem(int item) {
 
 
         viewPager.setCurrentItem(item);
@@ -158,8 +172,8 @@ tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
         //viewPager.setCurrentItem(name);
 
     }
-    class MyAdapter extends FragmentPagerAdapter
-    {
+
+    class MyAdapter extends FragmentPagerAdapter {
 
         public MyAdapter(FragmentManager fm) {
             super(fm);
@@ -173,10 +187,13 @@ tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
         @Override
         public Fragment getItem(int position) {
 
-            switch (position){
-                case 0 : return new Women();
-                case 1 : return new Men();
-                case 2 : return new Kids();
+            switch (position) {
+                case 0:
+                    return new Women();
+                case 1:
+                    return new Men();
+                case 2:
+                    return new Kids();
 
             }
             return null;
@@ -193,12 +210,12 @@ tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
         @Override
         public CharSequence getPageTitle(int position) {
 
-            switch (position){
-                case 0 :
+            switch (position) {
+                case 0:
                     return "WOMEN";
-                case 1 :
+                case 1:
                     return "MEN";
-                case 2 :
+                case 2:
                     return "KIDS";
             }
             return null;
