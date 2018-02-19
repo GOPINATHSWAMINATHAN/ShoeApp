@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#cbfff8"
@@ -10,9 +11,14 @@
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="400dp"
-
         android:layout_marginTop="20dp"
-        android:elevation="20dp">
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:elevation="8dp"
+        card_view:cardElevation="10dp"
+        card_view:cardPreventCornerOverlap="false">
 
         <LinearLayout
             android:layout_width="match_parent"
