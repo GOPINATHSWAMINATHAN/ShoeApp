@@ -20,6 +20,8 @@ public class Kids extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
 
+
+        //Inflated kids category with this fragment
         View v = inflater.inflate(R.layout.kids_category, container, false);
         return v;
     }
