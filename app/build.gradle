@@ -47,6 +47,10 @@ dependencies {
 
     compile 'com.yarolegovich:discrete-scrollview:1.4.4'
 
+    //Circular Image
+
+    compile 'com.mikhaellopez:circularimageview:3.0.2'
+
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 

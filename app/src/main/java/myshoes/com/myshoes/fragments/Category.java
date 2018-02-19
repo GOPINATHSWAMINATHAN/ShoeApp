@@ -34,7 +34,7 @@ public class Category extends Fragment {
 
         mAdapter = new MyAdapter(getChildFragmentManager());
         viewPager.setAdapter(mAdapter);
-        //viewPager.setAdapter(new TabProductFragment.MyAdapter(getChildFragmentManager()));
+
 
         tabLayout.post(new Runnable() {
             @Override
@@ -45,36 +45,10 @@ public class Category extends Fragment {
         });
 
 
-        //  viewPager.setOnPageChangeListener(pageChangeListener);
-
-
         return x;
     }
 
 
-    /*private ViewPager.OnPageChangeListener pageChangeListener;
-
-    {
-        pageChangeListener = new ViewPager.OnPageChangeListener() {
-
-            int currentPosition = 0;
-
-            @Override
-            public void onPageSelected(int newPosition) {
-
-
-              //  mAdapter.notifyDataSetChanged();
-
-            }
-
-            @Override
-            public void onPageScrolled(int arg0, float arg1, int arg2) {
-            }
-
-            public void onPageScrollStateChanged(int arg0) {
-            }
-        };
-    }*/
 
     public void setItem(int item) {
 

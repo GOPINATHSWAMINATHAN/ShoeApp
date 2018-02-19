@@ -7,6 +7,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import myshoes.com.myshoes.R;
 
@@ -16,6 +17,7 @@ import myshoes.com.myshoes.R;
 
 public class Kids extends Fragment {
 
+    TextView textOne, textTwo, textThree, textFour, textFive, TextSix;
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
