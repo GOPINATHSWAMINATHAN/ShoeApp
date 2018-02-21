@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "858511140418",
+    "firebase_url": "https://newpro1-a1a5e.firebaseio.com",
+    "project_id": "newpro1-a1a5e",
+    "storage_bucket": "newpro1-a1a5e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:858511140418:android:58ba00f09e15ba02",
+        "android_client_info": {
+          "package_name": "myshoes.com.myshoes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "858511140418-ik3ti6rcqi1n0f22tj2mprs77kv80tn5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBpO0VKL-6zRPp_XupM6N2o_e5wSyZzUIU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

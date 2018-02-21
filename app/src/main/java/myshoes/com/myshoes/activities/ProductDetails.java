@@ -17,9 +17,10 @@ import myshoes.com.myshoes.animations.BottomNavigationBehavior;
  */
 
 public class ProductDetails extends AppCompatActivity {
-String imageUrl;
-ImageView productImage;
-BottomNavigationView navigation;
+    String imageUrl;
+    ImageView productImage;
+    BottomNavigationView navigation;
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -18,6 +18,7 @@ import myshoes.com.myshoes.R;
 public class Kids extends Fragment {
 
     TextView textOne, textTwo, textThree, textFour, textFive, TextSix;
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

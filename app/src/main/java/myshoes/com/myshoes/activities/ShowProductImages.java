@@ -49,10 +49,11 @@ public class ShowProductImages extends AppCompatActivity implements
         itemPicker.addOnItemChangedListener(this);
         itemPicker.scrollToPosition(1);
         itemPicker.setItemTransitionTimeMillis(DiscreteScrollViewOptions.getTransitionTime());
-itemPicker.setItemTransformer(new ScaleTransformer.Builder().setMinScale(0.8f).build());
+        itemPicker.setItemTransformer(new ScaleTransformer.Builder().setMinScale(0.8f).build());
         findViewById(R.id.home).setOnClickListener(this);
         findViewById(R.id.fab_share).setOnClickListener(this);
     }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()) {
@@ -82,9 +83,11 @@ itemPicker.setItemTransformer(new ScaleTransformer.Builder().setMinScale(0.8f).b
             newCurrent.setOverlayColor(interpolate(position, overlayColor, currentOverlayColor));
         }
     }
+
     private int interpolate(float fraction, int c1, int c2) {
         return (int) evaluator.evaluate(fraction, c1, c2);
     }
+
     private void share(View view) {
         Snackbar.make(view, "UNSUPPORTED OPERATION", Snackbar.LENGTH_SHORT).show();
     }
