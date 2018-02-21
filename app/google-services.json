@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "858511140418-ki76p326e1k52din4lrc08j34i1cmdjt.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "myshoes.com.myshoes",
+            "certificate_hash": "f66d6edbc63e19ef11cfe1856ca6407f3c2f8db3"
+          }
+        },
+        {
           "client_id": "858511140418-ik3ti6rcqi1n0f22tj2mprs77kv80tn5.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,20 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "858511140418-ik3ti6rcqi1n0f22tj2mprs77kv80tn5.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "858511140418-hg936h5efn8ma3ref2od2v9gqpl3n5lk.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.newapp1.card1"
+              }
+            }
+          ]
         },
         "ads_service": {
           "status": 2
