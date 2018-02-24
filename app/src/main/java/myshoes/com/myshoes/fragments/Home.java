@@ -14,9 +14,11 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.chabbal.slidingdotsplash.SlidingSplashView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -40,6 +42,8 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
     TextView name, price, discount;
     ArrayList<HomeShop> myShops;
     ArrayList<HomeData> mHomeData;
+    String setImageFlipper[];
+    ProgressBar loading;
     private StoreAdapter mAdapter;
 
     public Home() {
@@ -71,9 +75,12 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         discount = v.findViewById(R.id.discount);
         myShops = new ArrayList<>();
         mHomeData = new ArrayList<>();
-
-
-        new getdata().execute();
+        loading = v.findViewById(R.id.load_view);
+        setImageFlipper = new String[5];
+        SlidingSplashView spv = v.findViewById(R.id.splash_flipper);
+        int ap[] = {R.drawable.banner, R.drawable.banner1, R.drawable.banner2, R.drawable.images};
+        spv.setImageResources(ap);
+        new getData().execute();
 
         mAdapter = new StoreAdapter(getActivity(), mHomeData, this);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
@@ -117,7 +124,6 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
             String rating = ds.child("rating").child("star").getValue(String.class);
             String thumb = ds.child("thumbnail").getValue(String.class);
             ArrayList<String> imageList = new ArrayList<>();
-
             DataSnapshot images = ds.child("image");
             Log.d("Images Size", String.valueOf(images.getChildrenCount()));
             for (int i = 0; i < images.getChildrenCount(); i++) {
@@ -151,15 +157,17 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         }
     }
 
-    class getdata extends AsyncTask<Void, Void, Void> {
+    class getData extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
             super.onPreExecute();
+            loading.setVisibility(View.VISIBLE);
         }
 
         @Override
         protected Void doInBackground(Void... voids) {
+
             final FirebaseDatabase database = FirebaseDatabase.getInstance();
             DatabaseReference ref = database.getInstance().getReference().child("home");
             ref.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -180,6 +188,7 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         @Override
         protected void onPostExecute(Void aVoid) {
             super.onPostExecute(aVoid);
+            loading.setVisibility(View.INVISIBLE);
         }
     }
 

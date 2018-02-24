@@ -51,6 +51,10 @@ dependencies {
 
     compile 'com.mikhaellopez:circularimageview:3.0.2'
 
+    //slidingdotsplash
+
+    compile 'com.chabbal:slidingdotsplash:1.0.2'
+
 
     annotationProcessor 'com.github.bumptech.glide:compiler:4.6.1'
 
