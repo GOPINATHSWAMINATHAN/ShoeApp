@@ -9,7 +9,6 @@ import java.util.ArrayList;
 public class HomeData {
 
     /*
-
     color:"White"
 description:"long lasting best shoes"
 discountPrice:296
@@ -23,8 +22,6 @@ occasion:"Casual"
 prodName:"Oricum Boxer-303 Sneakers"
 rating : 4
 sizeAvailable:"5,6,7,8"
-
-
      */
 
     private String color;

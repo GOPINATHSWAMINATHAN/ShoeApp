@@ -17,7 +17,7 @@ import myshoes.com.myshoes.animations.BottomNavigationBehavior;
  */
 
 public class ProductDetails extends AppCompatActivity {
-    String imageUrl;
+    String imageUrl, imageURL2;
     ImageView productImage;
     BottomNavigationView navigation;
 
@@ -33,6 +33,7 @@ public class ProductDetails extends AppCompatActivity {
         layoutParams.setBehavior(new BottomNavigationBehavior());
         Bundle extras = getIntent().getExtras();
         imageUrl = extras.getString("imageurl");
+        imageURL2 = extras.getString("imageurl2");
         productImage = findViewById(R.id.product_images);
 
         Glide.with(getApplicationContext())

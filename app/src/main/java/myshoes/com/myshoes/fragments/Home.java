@@ -24,7 +24,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import myshoes.com.myshoes.R;
 import myshoes.com.myshoes.adapters.StoreAdapter;
@@ -73,6 +72,7 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         myShops = new ArrayList<>();
         mHomeData = new ArrayList<>();
 
+
         new getdata().execute();
 
         mAdapter = new StoreAdapter(getActivity(), mHomeData, this);
@@ -100,8 +100,58 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         Toast.makeText(getActivity(), "clickedon" + clickedItemIndex, Toast.LENGTH_LONG).show();
     }
 
+    void fetchResults(DataSnapshot dataSnapshot) {
+        long count = dataSnapshot.getChildrenCount();
+        Log.d("Child Count ", String.valueOf(count));
+        for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-    class getdata extends AsyncTask<Void, Void, Void>{
+            String color = ds.child("color").getValue(String.class);
+            String desc = ds.child("description").getValue(String.class);
+            String discPrice = ds.child("discountPrice").getValue(String.class);
+            String material = ds.child("material").getValue(String.class);
+            String modelName = ds.child("modelName").getValue(String.class);
+            String mrpPrice = ds.child("mrpPrice").getValue(String.class);
+            String occasion = ds.child("occasion").getValue(String.class);
+            String prodName = ds.child("prodName").getValue(String.class);
+            String sizes = ds.child("sizeAvailable").getValue(String.class);
+            String rating = ds.child("rating").child("star").getValue(String.class);
+            String thumb = ds.child("thumbnail").getValue(String.class);
+            ArrayList<String> imageList = new ArrayList<>();
+
+            DataSnapshot images = ds.child("image");
+            Log.d("Images Size", String.valueOf(images.getChildrenCount()));
+            for (int i = 0; i < images.getChildrenCount(); i++) {
+                String img1 = images.child("image1").getValue(String.class);
+                String img2 = images.child("image2").getValue(String.class);
+                imageList.add(img1);
+                imageList.add(img2);
+
+                Log.d("Images", img1 + "  " + img2);
+            }
+            Log.d("Data", color + "/" + desc + "/"
+                    + discPrice + "/" + material + "/" + modelName + "/" + mrpPrice + "/" + occasion
+                    + "/" + prodName + "/" + sizes + "/" + rating);
+
+            mHomeData.add(new HomeData(
+                    color,
+                    desc,
+                    modelName,
+                    material,
+                    occasion,
+                    prodName,
+                    Integer.parseInt(discPrice),
+                    Integer.parseInt(mrpPrice),
+                    sizes,
+                    Integer.parseInt(rating),
+                    thumb,
+                    imageList
+            ));
+
+
+        }
+    }
+
+    class getdata extends AsyncTask<Void, Void, Void> {
 
         @Override
         protected void onPreExecute() {
@@ -132,57 +182,6 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
             super.onPostExecute(aVoid);
         }
     }
-
-    void fetchResults(DataSnapshot dataSnapshot){
-        long count = dataSnapshot.getChildrenCount();
-        Log.d("Child Count ", String.valueOf(count));
-        for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-            String color = ds.child("color").getValue(String.class);
-            String desc = ds.child("description").getValue(String.class);
-            String discPrice = ds.child("discountPrice").getValue(String.class);
-            String material = ds.child("material").getValue(String.class);
-            String modelName = ds.child("modelName").getValue(String.class);
-            String mrpPrice = ds.child("mrpPrice").getValue(String.class);
-            String occasion = ds.child("occasion").getValue(String.class);
-            String prodName = ds.child("prodName").getValue(String.class);
-            String sizes = ds.child("sizeAvailable").getValue(String.class);
-            String thumb = ds.child("thumbnail").getValue(String.class);
-            ArrayList<String> imageList = new ArrayList<>();
-
-            DataSnapshot images =  ds.child("image");
-            Log.d("Images Size", String.valueOf(images.getChildrenCount()));
-            for (int i=0; i < images.getChildrenCount(); i++){
-                String img1 = images.child("image1").getValue(String.class);
-                String img2 = images.child("image2").getValue(String.class);
-                imageList.add(img1);
-                imageList.add(img2);
-
-                Log.d("Images", img1 + "  " + img2);
-            }
-            Log.d("Data", color + "/" + desc + "/"
-                    + discPrice + "/" + material + "/" + modelName + "/" + mrpPrice + "/" + occasion
-                    + "/" + prodName + "/" +  sizes );
-
-            mHomeData.add(new HomeData(
-                    color,
-                    desc,
-                    modelName,
-                    material,
-                    occasion,
-                    prodName,
-                    Integer.parseInt(discPrice),
-                    Integer.parseInt(mrpPrice),
-                    sizes,
-                    4,
-                    thumb,
-                    imageList
-            ));
-
-
-        }
-    }
-
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
