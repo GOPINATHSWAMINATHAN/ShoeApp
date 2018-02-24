@@ -1,9 +1,7 @@
 package myshoes.com.myshoes.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Typeface;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
@@ -22,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import myshoes.com.myshoes.R;
-import myshoes.com.myshoes.activities.ProductDetails;
 import myshoes.com.myshoes.model.HomeData;
 
 /**
@@ -30,15 +27,15 @@ import myshoes.com.myshoes.model.HomeData;
  */
 
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder> {
-    ListItemClickListener mOnClickListener;
+    private ListItemClickListener mOnClickListener;
     private Context context;
-    private List<HomeData> movieList = new ArrayList<>();
+    private List<HomeData> shoesList = new ArrayList<>();
 
 
-    public StoreAdapter(Context context, List<HomeData> movieList) {
+    public StoreAdapter(Context context, List<HomeData> movieList, ListItemClickListener listener) {
         this.context = context;
-        this.movieList = movieList;
-
+        this.shoesList = movieList;
+        this.mOnClickListener = listener;
     }
 
     @Override
@@ -46,49 +43,49 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
         final View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.store_home, parent, false);
         MyViewHolder myViewHolder = new MyViewHolder(itemView);
-        itemView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(context, "Item clicked is true", Toast.LENGTH_LONG).show();
-            }
-        });
+//        itemView.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                  Toast.makeText(context, "Item clicked is true", Toast.LENGTH_LONG).show();
+//            }
+//        });
         return myViewHolder;
     }
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final HomeData movie = movieList.get(position);
 
-        holder.name.setText(movie.getDescription().get(position).toString());
-        holder.price.setText(movie.getMrpPrice().get(position).toString());
+        holder.name.setText(shoesList.get(position).getProdName());
+        holder.price.setText(String.valueOf(shoesList.get(position).getMrpPrice()));
+        holder.discount.setText(String.valueOf(shoesList.get(position).getDiscountPrice()));
         Glide.with(context)
-                .load(movie.getThumbnail().get(position))
+                .load(shoesList.get(position).getThumbnail())
                 .into(holder.thumbnail);
 
-        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
-        });
-        holder.myRelative.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pIntent = new Intent(context, ProductDetails.class);
-                Bundle pBundle = new Bundle();
-                pBundle.putString("imageurl", movieList.get(position).getImage().toString());
-                pIntent.putExtras(pBundle);
-                context.startActivity(pIntent);
-                Toast.makeText(context, "Position is " + movieList.get(position).getImage(), Toast.LENGTH_LONG).show();
-            }
-        });
+//        holder.thumbnail.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//            }
+//        });
+//        holder.myRelative.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent pIntent = new Intent(context, ProductDetails.class);
+//                Bundle pBundle = new Bundle();
+//                pBundle.putString("imageurl", shoesList.get(position).getImage().toString());
+//                pIntent.putExtras(pBundle);
+//                context.startActivity(pIntent);
+//                Toast.makeText(context, "Position is " + shoesList.get(position).getImage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 
     }
 
     @Override
     public int getItemCount() {
-        Log.e("MOVIELIST size", "" + movieList.size());
-        return movieList.size();
+        Log.e("MOVIELIST size", "" + shoesList.size());
+        return shoesList.size();
 
     }
 
@@ -97,15 +94,14 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        public TextView name, price, discount;
-        public ImageView thumbnail;
-        public CardView myCardView;
+        private TextView name, price, discount;
+        private ImageView thumbnail;
+        private CardView myCardView;
         LinearLayout myLinearLayout;
         RelativeLayout myRelative;
 
         public MyViewHolder(View view) {
             super(view);
-
             context = view.getContext();
             name = view.findViewById(R.id.title);
             price = view.findViewById(R.id.price);
@@ -121,11 +117,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
             discount.setTypeface(font);
         }
 
-
         @Override
         public void onClick(View v) {
             int clickedPosition = getAdapterPosition();
-            mOnClickListener.onListItemClick(clickedPosition);
+            Toast.makeText(context, "Item clicked is true", Toast.LENGTH_LONG).show();
         }
     }
 }
