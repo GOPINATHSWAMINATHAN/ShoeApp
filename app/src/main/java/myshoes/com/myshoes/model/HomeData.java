@@ -48,6 +48,7 @@ sizeAvailable:
     private ArrayList<String> mrpPrice;
     private ArrayList<String> sizesAvailable;
     private ArrayList<String> rating;
+    private ArrayList<String> thumbnail;
 
     private ArrayList<String> image;
 
@@ -55,13 +56,15 @@ sizeAvailable:
 
     }
 
-    public HomeData(ArrayList<String> color, ArrayList<String> description, ArrayList<String> modelName, ArrayList<String> material, ArrayList<String> occassion, ArrayList<String> prodName, ArrayList<String> discountPrice, ArrayList<String> mrpPrice, ArrayList<String> sizesAvailable, ArrayList<String> images) {
+
+    public HomeData(ArrayList<String> color, ArrayList<String> description, ArrayList<String> modelName, ArrayList<String> material, ArrayList<String> occassion, ArrayList<String> prodName, ArrayList<String> discountPrice, ArrayList<String> mrpPrice, ArrayList<String> sizesAvailable, ArrayList<String> images, ArrayList<String> thumbnail) {
         this.color = color;
         this.description = description;
         this.modelName = modelName;
         this.material = material;
         this.occassion = occassion;
         this.prodName = prodName;
+
         this.discountPrice = discountPrice;
         this.mrpPrice = mrpPrice;
         this.sizesAvailable = sizesAvailable;
@@ -154,5 +157,13 @@ sizeAvailable:
 
     public void setImage(ArrayList<String> image) {
         this.image = image;
+    }
+
+    public ArrayList<String> getThumbnail() {
+        return thumbnail;
+    }
+
+    public void setThumbnail(ArrayList<String> thumbnail) {
+        this.thumbnail = thumbnail;
     }
 }

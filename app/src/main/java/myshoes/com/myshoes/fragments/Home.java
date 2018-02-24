@@ -73,7 +73,8 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         discount = v.findViewById(R.id.discount);
         myShops = new ArrayList<>();
         mHomeData = new ArrayList<>();
-        mAdapter = new StoreAdapter(getActivity(), myShops, this);
+
+        mAdapter = new StoreAdapter(getActivity(), getData(), this);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(8), true));
@@ -81,8 +82,6 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         recyclerView.setAdapter(mAdapter);
         recyclerView.setNestedScrollingEnabled(false);
 
-
-        fetchStoreItems();
         return v;
     }
 
@@ -92,30 +91,6 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
     private int dpToPx(int dp) {
         Resources r = getResources();
         return Math.round(TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp, r.getDisplayMetrics()));
-    }
-
-    private void fetchStoreItems() {
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F2mfFLz12RhMUi6gYQt7w2Td04l43?alt=media&token=0e9653a1-07bf-4aad-b355-5ab83ca5f1a1", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2FbBF11AA6UDOIdyaHrhiPD1NJXbA2?alt=media&token=bb81ccc2-c5c6-4397-9667-b8c860f2c1ec", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        Log.e("MY SHOPES VALUES ARE", "" + myShops.get(0).getImageUrl());
-        // Log.e("MY HOME VALUES ARE",""+al.get(0).getColor());
-        getData();
-
-
     }
 
     @Override
@@ -133,7 +108,11 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
                 new ValueEventListener() {
                     @Override
                     public void onDataChange(DataSnapshot dataSnapshot) {
-                        ArrayList<String> description = new ArrayList<>(), discountPrice = new ArrayList<>(), material = new ArrayList<>(), modelName = new ArrayList<>(), mrpPrice = new ArrayList<>(), occassion = new ArrayList<>(), prodName = new ArrayList<>(), sizeAvailable = new ArrayList<>(), star = new ArrayList<>(), imageUrl = new ArrayList<>();
+                        ArrayList<String> description = new ArrayList<>(),
+                                discountPrice = new ArrayList<>(),
+                                material = new ArrayList<>(), modelName = new ArrayList<>(),
+                                mrpPrice = new ArrayList<>(), occassion = new ArrayList<>(), prodName = new ArrayList<>(),
+                                sizeAvailable = new ArrayList<>(), star = new ArrayList<>(), imageUrl = new ArrayList<>(), thumbnail = new ArrayList<>();
                         ArrayList<String> color = new ArrayList();
 //                        String color=dataSnapshot.child("color").getValue().toString();
 //
@@ -171,6 +150,8 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
                             star.add(mstar);
                             String msizeAvailable = homeData.child("sizeAvailable").getValue().toString();
                             sizeAvailable.add(msizeAvailable);
+                            String mthumbnail = homeData.child("thumbnail").getValue().toString();
+                            thumbnail.add(mthumbnail);
                             if (flag == 0) {
                                 for (DataSnapshot images : dataSnapshot.getChildren()) {
                                     flag = 1;
@@ -189,14 +170,11 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
                             }
                             Log.e("COLOR VALUE IS ", "" + color);
 
-                            mHomeData.add(new HomeData(color, description, modelName, material, occassion, prodName, discountPrice, mrpPrice, sizeAvailable, imagesUrl));
+                            mHomeData.add(new HomeData(color, description, modelName, material, occassion, prodName, discountPrice, mrpPrice, sizeAvailable, imagesUrl, thumbnail));
 //                            ListIterator<HomeData> itr = mHomeData.listIterator();
 //                            while (itr.hasNext()) {
 //                                Log.e("MY VALUES AREEEE", "" + itr.next().getColor());
 //                            }
-
-                            Log.e("MY HOme DATa", "" + mHomeData.get(0).getImage());
-
 
                         }
 
@@ -211,6 +189,7 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
 
         return mHomeData;
     }
+
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 

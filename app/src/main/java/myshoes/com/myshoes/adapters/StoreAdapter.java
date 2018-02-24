@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,7 +22,7 @@ import java.util.List;
 
 import myshoes.com.myshoes.R;
 import myshoes.com.myshoes.activities.ProductDetails;
-import myshoes.com.myshoes.model.HomeShop;
+import myshoes.com.myshoes.model.HomeData;
 
 /**
  * Created by gopinath on 06/02/18.
@@ -30,10 +31,10 @@ import myshoes.com.myshoes.model.HomeShop;
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder> {
     ListItemClickListener mOnClickListener;
     private Context context;
-    private List<HomeShop> movieList;
+    private List<HomeData> movieList;
 
 
-    public StoreAdapter(Context context, List<HomeShop> movieList, ListItemClickListener listener) {
+    public StoreAdapter(Context context, List<HomeData> movieList, ListItemClickListener listener) {
         this.context = context;
         this.movieList = movieList;
         this.mOnClickListener = listener;
@@ -55,13 +56,14 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, final int position) {
-        final HomeShop movie = movieList.get(position);
+        final HomeData movie = movieList.get(position);
 
-        holder.name.setText(movie.getProductName());
-        holder.price.setText(Double.toString(movie.getProductPrice()));
+        holder.name.setText(movie.getDescription().get(position).toString());
+        holder.price.setText(movie.getMrpPrice().get(position).toString());
         Glide.with(context)
-                .load(movie.getImageUrl())
+                .load(movie.getThumbnail().get(position))
                 .into(holder.thumbnail);
+
         holder.thumbnail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,10 +74,10 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
             public void onClick(View v) {
                 Intent pIntent = new Intent(context, ProductDetails.class);
                 Bundle pBundle = new Bundle();
-                pBundle.putString("imageurl", movieList.get(position).getImageUrl());
+                pBundle.putString("imageurl", movieList.get(position).getImage().toString());
                 pIntent.putExtras(pBundle);
                 context.startActivity(pIntent);
-                Toast.makeText(context, "Position is " + movieList.get(position).getImageUrl(), Toast.LENGTH_LONG).show();
+                Toast.makeText(context, "Position is " + movieList.get(position).getImage(), Toast.LENGTH_LONG).show();
             }
         });
 
@@ -84,7 +86,9 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder
 
     @Override
     public int getItemCount() {
+        Log.e("MOVIELIST size", "" + movieList.size());
         return movieList.size();
+
     }
 
     public interface ListItemClickListener {
