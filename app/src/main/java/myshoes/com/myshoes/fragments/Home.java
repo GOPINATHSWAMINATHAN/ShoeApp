@@ -1,6 +1,5 @@
 package myshoes.com.myshoes.fragments;
 
-import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.Bundle;
@@ -9,18 +8,25 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import myshoes.com.myshoes.R;
 import myshoes.com.myshoes.adapters.StoreAdapter;
-import myshoes.com.myshoes.firebase.FetchResources;
 import myshoes.com.myshoes.model.HomeData;
 import myshoes.com.myshoes.model.HomeShop;
 
@@ -28,13 +34,14 @@ import myshoes.com.myshoes.model.HomeShop;
  * Created by gopinath on 06/02/18.
  */
 
-public class Home extends Fragment {
+public class Home extends Fragment implements StoreAdapter.ListItemClickListener {
 
     public static View.OnClickListener myOnClickListener;
     RecyclerView recyclerView;
     TextView name, price, discount;
     List<HomeData> al = new ArrayList<>();
     List<HomeShop> myShops;
+    List<HomeData> mHomeData;
     private StoreAdapter mAdapter;
 
     public Home() {
@@ -51,8 +58,6 @@ public class Home extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        myOnClickListener = new MyOnClickListener(getActivity());
-
     }
 
 
@@ -67,7 +72,8 @@ public class Home extends Fragment {
         price = v.findViewById(R.id.price);
         discount = v.findViewById(R.id.discount);
         myShops = new ArrayList<>();
-        mAdapter = new StoreAdapter(getActivity(), myShops);
+        mHomeData = new ArrayList<>();
+        mAdapter = new StoreAdapter(getActivity(), myShops, this);
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(8), true));
@@ -89,44 +95,121 @@ public class Home extends Fragment {
     }
 
     private void fetchStoreItems() {
-
-
-        for (int i = 0; i < al.size(); i++) {
-            //myShops.add(new HomeShop(al.get(i).getImage()))
-        }
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F2mfFLz12RhMUi6gYQt7w2Td04l43?alt=media&token=0e9653a1-07bf-4aad-b355-5ab83ca5f1a1", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2FbBF11AA6UDOIdyaHrhiPD1NJXbA2?alt=media&token=bb81ccc2-c5c6-4397-9667-b8c860f2c1ec", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-//        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
-        al = new FetchResources().getData();
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F2mfFLz12RhMUi6gYQt7w2Td04l43?alt=media&token=0e9653a1-07bf-4aad-b355-5ab83ca5f1a1", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2FbBF11AA6UDOIdyaHrhiPD1NJXbA2?alt=media&token=bb81ccc2-c5c6-4397-9667-b8c860f2c1ec", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        myShops.add(new HomeShop("https://firebasestorage.googleapis.com/v0/b/hlacab-8eea3.appspot.com/o/profile_images%2F0knHaXSVVlgLTlqWoF7a5goZxLn2?alt=media&token=c64d56bd-ae8d-4232-a017-b756e1055397", "High Quality leather Shoe", "123", 23.3, 30));
+        Log.e("MY SHOPES VALUES ARE", "" + myShops.get(0).getImageUrl());
+        // Log.e("MY HOME VALUES ARE",""+al.get(0).getColor());
+        getData();
 
 
     }
 
-    private static class MyOnClickListener implements View.OnClickListener {
+    @Override
+    public void onListItemClick(int clickedItemIndex) {
+        Log.e("MY CLICK IS ", "" + clickedItemIndex);
+        Toast.makeText(getActivity(), "clickedon" + clickedItemIndex, Toast.LENGTH_LONG).show();
+    }
 
-        private final Context context;
+    public List<HomeData> getData() {
 
-        private MyOnClickListener(Context context) {
-            this.context = context;
-        }
+        String color;
+        final FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("home");
+        ref.addListenerForSingleValueEvent(
+                new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        ArrayList<String> description = new ArrayList<>(), discountPrice = new ArrayList<>(), material = new ArrayList<>(), modelName = new ArrayList<>(), mrpPrice = new ArrayList<>(), occassion = new ArrayList<>(), prodName = new ArrayList<>(), sizeAvailable = new ArrayList<>(), star = new ArrayList<>(), imageUrl = new ArrayList<>();
+                        ArrayList<String> color = new ArrayList();
+//                        String color=dataSnapshot.child("color").getValue().toString();
+//
+////                        Iterable<DataSnapshot> homeData = dataSnapshot.getChildren();
+////                        //Get map of users in datasnapshot
+////
+////                        for (DataSnapshot ds : homeData) {
+////
+////                          String color=  ds.child("color").toString();
+////                          String description=ds.child("description").toString();
+////                           mHomeData.add(color);
+////                           mHomeData.add(description);
+////                        }
+                        ArrayList<String> imagesUrl = new ArrayList<>();
 
-        @Override
-        public void onClick(View v) {
-            //removeItem(v);
-        }
+                        int flag = 0;
+                        for (DataSnapshot homeData : dataSnapshot.getChildren()) {
+                            String mycolor = homeData.child("color").getValue().toString();
+                            color.add(mycolor);
+                            String mdescription = homeData.child("description").getValue().toString();
+                            description.add(mdescription);
+                            String mdiscountPrice = homeData.child("discountPrice").getValue().toString();
+                            discountPrice.add(mdiscountPrice);
+                            String mmaterial = homeData.child("material").getValue().toString();
+                            material.add(mmaterial);
+                            String mmodelName = homeData.child("modelName").getValue().toString();
+                            modelName.add(mmodelName);
+                            String mmrpPrice = homeData.child("mrpPrice").getValue().toString();
+                            mrpPrice.add(mmrpPrice);
+                            String moccassion = homeData.child("occasion").getValue().toString();
+                            occassion.add(moccassion);
+                            String mprodName = homeData.child("prodName").getValue().toString();
+                            prodName.add(mprodName);
+                            String mstar = homeData.child("rating").child("star").getValue().toString();
+                            star.add(mstar);
+                            String msizeAvailable = homeData.child("sizeAvailable").getValue().toString();
+                            sizeAvailable.add(msizeAvailable);
+                            if (flag == 0) {
+                                for (DataSnapshot images : dataSnapshot.getChildren()) {
+                                    flag = 1;
+
+                                    for (int i = 1; i <= images.child("image").getChildrenCount(); i++) {
+
+                                        Log.e("Images", "" + images.child("image").child("image" + i).toString());
+                                        String mimageUrl = images.child("image").child("image" + i).getValue().toString();
+                                        imagesUrl.add(mimageUrl);
+
+                                    }
+
+
+                                }
+
+                            }
+                            Log.e("COLOR VALUE IS ", "" + color);
+
+                            mHomeData.add(new HomeData(color, description, modelName, material, occassion, prodName, discountPrice, mrpPrice, sizeAvailable, imagesUrl));
+//                            ListIterator<HomeData> itr = mHomeData.listIterator();
+//                            while (itr.hasNext()) {
+//                                Log.e("MY VALUES AREEEE", "" + itr.next().getColor());
+//                            }
+
+                            Log.e("MY HOme DATa", "" + mHomeData.get(0).getImage());
+
+
+                        }
+
+
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+                        //handle databaseError
+                    }
+                });
+
+        return mHomeData;
     }
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {

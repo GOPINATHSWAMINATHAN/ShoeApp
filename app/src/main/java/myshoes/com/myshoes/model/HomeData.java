@@ -38,16 +38,24 @@ sizeAvailable:
 
      */
 
-    private String color, description, modelName,
-            material, occassion, prodName, discountPrice,
-            mrpPrice, sizesAvailable, rating;
+    private ArrayList<String> color;
+    private ArrayList<String> description;
+    private ArrayList<String> modelName;
+    private ArrayList<String> material;
+    private ArrayList<String> occassion;
+    private ArrayList<String> prodName;
+    private ArrayList<String> discountPrice;
+    private ArrayList<String> mrpPrice;
+    private ArrayList<String> sizesAvailable;
+    private ArrayList<String> rating;
 
-    private String[] image;
+    private ArrayList<String> image;
 
     public HomeData(String color, String description, String modelName, String material, String occassion, String prodName, String discountPrice, String mrpPrice, String sizeAvailable, ArrayList<String> imageUrl) {
 
     }
-    public HomeData(String color, String description, String modelName, String material, String occassion, String prodName, String discountPrice, String mrpPrice, String sizesAvailable, String[] images) {
+
+    public HomeData(ArrayList<String> color, ArrayList<String> description, ArrayList<String> modelName, ArrayList<String> material, ArrayList<String> occassion, ArrayList<String> prodName, ArrayList<String> discountPrice, ArrayList<String> mrpPrice, ArrayList<String> sizesAvailable, ArrayList<String> images) {
         this.color = color;
         this.description = description;
         this.modelName = modelName;
@@ -60,91 +68,91 @@ sizeAvailable:
         this.image = images;
     }
 
-    public String getColor() {
+    public ArrayList<String> getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(ArrayList<String> color) {
         this.color = color;
     }
 
-    public String getDescription() {
+    public ArrayList<String> getDescription() {
         return description;
     }
 
-    public void setDescription(String description) {
+    public void setDescription(ArrayList<String> description) {
         this.description = description;
     }
 
-    public String getModelName() {
+    public ArrayList<String> getModelName() {
         return modelName;
     }
 
-    public void setModelName(String modelName) {
+    public void setModelName(ArrayList<String> modelName) {
         this.modelName = modelName;
     }
 
-    public String getMaterial() {
+    public ArrayList<String> getMaterial() {
         return material;
     }
 
-    public void setMaterial(String material) {
+    public void setMaterial(ArrayList<String> material) {
         this.material = material;
     }
 
-    public String getOccassion() {
+    public ArrayList<String> getOccassion() {
         return occassion;
     }
 
-    public void setOccassion(String occassion) {
+    public void setOccassion(ArrayList<String> occassion) {
         this.occassion = occassion;
     }
 
-    public String getProdName() {
+    public ArrayList<String> getProdName() {
         return prodName;
     }
 
-    public void setProdName(String prodName) {
+    public void setProdName(ArrayList<String> prodName) {
         this.prodName = prodName;
     }
 
-    public String getDiscountPrice() {
+    public ArrayList<String> getDiscountPrice() {
         return discountPrice;
     }
 
-    public void setDiscountPrice(String discountPrice) {
+    public void setDiscountPrice(ArrayList<String> discountPrice) {
         this.discountPrice = discountPrice;
     }
 
-    public String getMrpPrice() {
+    public ArrayList<String> getMrpPrice() {
         return mrpPrice;
     }
 
-    public void setMrpPrice(String mrpPrice) {
+    public void setMrpPrice(ArrayList<String> mrpPrice) {
         this.mrpPrice = mrpPrice;
     }
 
-    public String getSizesAvailable() {
+    public ArrayList<String> getSizesAvailable() {
         return sizesAvailable;
     }
 
-    public void setSizesAvailable(String sizesAvailable) {
+    public void setSizesAvailable(ArrayList<String> sizesAvailable) {
         this.sizesAvailable = sizesAvailable;
     }
 
-    public String getRating() {
+    public ArrayList<String> getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(ArrayList<String> rating) {
         this.rating = rating;
     }
 
-    public String[] getImage() {
+    public ArrayList<String> getImage() {
         return image;
     }
 
-    public void setImage(String[] image) {
+    public void setImage(ArrayList<String> image) {
         this.image = image;
     }
 }
