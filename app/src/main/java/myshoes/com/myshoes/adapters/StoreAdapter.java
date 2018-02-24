@@ -18,6 +18,7 @@ import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import myshoes.com.myshoes.R;
@@ -31,13 +32,13 @@ import myshoes.com.myshoes.model.HomeData;
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.MyViewHolder> {
     ListItemClickListener mOnClickListener;
     private Context context;
-    private List<HomeData> movieList;
+    private List<HomeData> movieList = new ArrayList<>();
 
 
-    public StoreAdapter(Context context, List<HomeData> movieList, ListItemClickListener listener) {
+    public StoreAdapter(Context context, List<HomeData> movieList) {
         this.context = context;
         this.movieList = movieList;
-        this.mOnClickListener = listener;
+
     }
 
     @Override

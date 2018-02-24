@@ -2,6 +2,7 @@ package myshoes.com.myshoes.fragments;
 
 import android.content.res.Resources;
 import android.graphics.Rect;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -74,7 +75,7 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         myShops = new ArrayList<>();
         mHomeData = new ArrayList<>();
 
-        mAdapter = new StoreAdapter(getActivity(), getData(), this);
+        new FetchHomeData().execute();
         RecyclerView.LayoutManager mLayoutManager = new GridLayoutManager(getActivity(), 2);
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.addItemDecoration(new GridSpacingItemDecoration(2, dpToPx(8), true));
@@ -99,21 +100,23 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         Toast.makeText(getActivity(), "clickedon" + clickedItemIndex, Toast.LENGTH_LONG).show();
     }
 
-    public List<HomeData> getData() {
+    class FetchHomeData extends AsyncTask<Void, Void, List<HomeData>> {
 
-        String color;
-        final FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("home");
-        ref.addListenerForSingleValueEvent(
-                new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
-                        ArrayList<String> description = new ArrayList<>(),
-                                discountPrice = new ArrayList<>(),
-                                material = new ArrayList<>(), modelName = new ArrayList<>(),
-                                mrpPrice = new ArrayList<>(), occassion = new ArrayList<>(), prodName = new ArrayList<>(),
-                                sizeAvailable = new ArrayList<>(), star = new ArrayList<>(), imageUrl = new ArrayList<>(), thumbnail = new ArrayList<>();
-                        ArrayList<String> color = new ArrayList();
+        @Override
+        protected List<HomeData> doInBackground(Void... voids) {
+            String color;
+            final FirebaseDatabase database = FirebaseDatabase.getInstance();
+            DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("home");
+            ref.addListenerForSingleValueEvent(
+                    new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
+                            ArrayList<String> description = new ArrayList<>(),
+                                    discountPrice = new ArrayList<>(),
+                                    material = new ArrayList<>(), modelName = new ArrayList<>(),
+                                    mrpPrice = new ArrayList<>(), occassion = new ArrayList<>(), prodName = new ArrayList<>(),
+                                    sizeAvailable = new ArrayList<>(), star = new ArrayList<>(), imageUrl = new ArrayList<>(), thumbnail = new ArrayList<>();
+                            ArrayList<String> color = new ArrayList();
 //                        String color=dataSnapshot.child("color").getValue().toString();
 //
 ////                        Iterable<DataSnapshot> homeData = dataSnapshot.getChildren();
@@ -126,70 +129,76 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
 ////                           mHomeData.add(color);
 ////                           mHomeData.add(description);
 ////                        }
-                        ArrayList<String> imagesUrl = new ArrayList<>();
+                            ArrayList<String> imagesUrl = new ArrayList<>();
 
-                        int flag = 0;
-                        for (DataSnapshot homeData : dataSnapshot.getChildren()) {
-                            String mycolor = homeData.child("color").getValue().toString();
-                            color.add(mycolor);
-                            String mdescription = homeData.child("description").getValue().toString();
-                            description.add(mdescription);
-                            String mdiscountPrice = homeData.child("discountPrice").getValue().toString();
-                            discountPrice.add(mdiscountPrice);
-                            String mmaterial = homeData.child("material").getValue().toString();
-                            material.add(mmaterial);
-                            String mmodelName = homeData.child("modelName").getValue().toString();
-                            modelName.add(mmodelName);
-                            String mmrpPrice = homeData.child("mrpPrice").getValue().toString();
-                            mrpPrice.add(mmrpPrice);
-                            String moccassion = homeData.child("occasion").getValue().toString();
-                            occassion.add(moccassion);
-                            String mprodName = homeData.child("prodName").getValue().toString();
-                            prodName.add(mprodName);
-                            String mstar = homeData.child("rating").child("star").getValue().toString();
-                            star.add(mstar);
-                            String msizeAvailable = homeData.child("sizeAvailable").getValue().toString();
-                            sizeAvailable.add(msizeAvailable);
-                            String mthumbnail = homeData.child("thumbnail").getValue().toString();
-                            thumbnail.add(mthumbnail);
-                            if (flag == 0) {
-                                for (DataSnapshot images : dataSnapshot.getChildren()) {
-                                    flag = 1;
+                            int flag = 0;
+                            for (DataSnapshot homeData : dataSnapshot.getChildren()) {
+                                String mycolor = homeData.child("color").getValue().toString();
+                                color.add(mycolor);
+                                String mdescription = homeData.child("description").getValue().toString();
+                                description.add(mdescription);
+                                String mdiscountPrice = homeData.child("discountPrice").getValue().toString();
+                                discountPrice.add(mdiscountPrice);
+                                String mmaterial = homeData.child("material").getValue().toString();
+                                material.add(mmaterial);
+                                String mmodelName = homeData.child("modelName").getValue().toString();
+                                modelName.add(mmodelName);
+                                String mmrpPrice = homeData.child("mrpPrice").getValue().toString();
+                                mrpPrice.add(mmrpPrice);
+                                String moccassion = homeData.child("occasion").getValue().toString();
+                                occassion.add(moccassion);
+                                String mprodName = homeData.child("prodName").getValue().toString();
+                                prodName.add(mprodName);
+                                String mstar = homeData.child("rating").child("star").getValue().toString();
+                                star.add(mstar);
+                                String msizeAvailable = homeData.child("sizeAvailable").getValue().toString();
+                                sizeAvailable.add(msizeAvailable);
+                                String mthumbnail = homeData.child("thumbnail").getValue().toString();
+                                thumbnail.add(mthumbnail);
+                                if (flag == 0) {
+                                    for (DataSnapshot images : dataSnapshot.getChildren()) {
+                                        flag = 1;
 
-                                    for (int i = 1; i <= images.child("image").getChildrenCount(); i++) {
+                                        for (int i = 1; i <= images.child("image").getChildrenCount(); i++) {
 
-                                        Log.e("Images", "" + images.child("image").child("image" + i).toString());
-                                        String mimageUrl = images.child("image").child("image" + i).getValue().toString();
-                                        imagesUrl.add(mimageUrl);
+                                            Log.e("Images", "" + images.child("image").child("image" + i).toString());
+                                            String mimageUrl = images.child("image").child("image" + i).getValue().toString();
+                                            imagesUrl.add(mimageUrl);
+
+                                        }
+
 
                                     }
 
-
                                 }
+                                Log.e("COLOR VALUE IS ", "" + color);
 
-                            }
-                            Log.e("COLOR VALUE IS ", "" + color);
-
-                            mHomeData.add(new HomeData(color, description, modelName, material, occassion, prodName, discountPrice, mrpPrice, sizeAvailable, imagesUrl, thumbnail));
+                                mHomeData.add(new HomeData(color, description, modelName, material, occassion, prodName, discountPrice, mrpPrice, sizeAvailable, imagesUrl, thumbnail));
 //                            ListIterator<HomeData> itr = mHomeData.listIterator();
 //                            while (itr.hasNext()) {
 //                                Log.e("MY VALUES AREEEE", "" + itr.next().getColor());
 //                            }
 
+                            }
+
+
                         }
 
+                        @Override
+                        public void onCancelled(DatabaseError databaseError) {
+                            //handle databaseError
+                        }
+                    });
 
-                    }
+            return mHomeData;
+        }
 
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-                        //handle databaseError
-                    }
-                });
-
-        return mHomeData;
+        @Override
+        protected void onPostExecute(List<HomeData> homeData) {
+            mAdapter = new StoreAdapter(getActivity(), homeData);
+            super.onPostExecute(homeData);
+        }
     }
-
 
     public class GridSpacingItemDecoration extends RecyclerView.ItemDecoration {
 
