@@ -75,7 +75,7 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
         discount = v.findViewById(R.id.discount);
         myShops = new ArrayList<>();
         mHomeData = new ArrayList<>();
-        loading = v.findViewById(R.id.load_view);
+        loading = (ProgressBar) v.findViewById(R.id.load_view);
         setImageFlipper = new String[5];
         SlidingSplashView spv = v.findViewById(R.id.splash_flipper);
         int ap[] = {R.drawable.banner, R.drawable.banner1, R.drawable.banner2, R.drawable.images};

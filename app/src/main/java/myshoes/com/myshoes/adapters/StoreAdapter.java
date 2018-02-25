@@ -1,15 +1,14 @@
 package myshoes.com.myshoes.adapters;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Typeface;
-import android.os.Bundle;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -23,7 +22,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import myshoes.com.myshoes.R;
-import myshoes.com.myshoes.activities.ProductDetails;
 import myshoes.com.myshoes.model.HomeData;
 
 /**
@@ -33,6 +31,7 @@ import myshoes.com.myshoes.model.HomeData;
 public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> {
     private ListItemClickListener mOnClickListener;
     private Context context;
+
     private List<HomeData> shoesList = new ArrayList<>();
 
 
@@ -71,18 +70,18 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 //            public void onClick(View v) {
 //            }
 //        });
-        holder.myRelative.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent pIntent = new Intent(context, ProductDetails.class);
-                Bundle pBundle = new Bundle();
-                pBundle.putString("imageurl", shoesList.get(position).getImages().get(0).toString());
-                pBundle.putString("imageurl1", shoesList.get(position).getImages().get(1).toString());
-                pIntent.putExtras(pBundle);
-                context.startActivity(pIntent);
-                Toast.makeText(context, "Position is " + shoesList.get(position).getImages(), Toast.LENGTH_LONG).show();
-            }
-        });
+//        holder.myRelative.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                Intent pIntent = new Intent(context, ProductDetails.class);
+//                Bundle pBundle = new Bundle();
+//                pBundle.putString("imageurl", shoesList.get(position).getImages().get(0).toString());
+//                pBundle.putString("imageurl1", shoesList.get(position).getImages().get(1).toString());
+//                pIntent.putExtras(pBundle);
+//                context.startActivity(pIntent);
+//                Toast.makeText(context, "Position is " + shoesList.get(position).getImages(), Toast.LENGTH_LONG).show();
+//            }
+//        });
 
 
     }
@@ -98,7 +97,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         void onListItemClick(int clickedItemIndex);
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    public class ViewHolder extends RecyclerView.ViewHolder implements OnClickListener {
         LinearLayout myLinearLayout;
         RelativeLayout myRelative;
         private TextView name, price, discount, currencyType;
@@ -127,7 +126,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
 
         @Override
         public void onClick(View v) {
-            int clickedPosition = getAdapterPosition();
+            int clickedPosition = getLayoutPosition();
+            mOnClickListener.onListItemClick(clickedPosition);
             Toast.makeText(context, "Item clicked is true", Toast.LENGTH_LONG).show();
         }
     }
