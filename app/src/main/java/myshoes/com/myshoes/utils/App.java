@@ -1,4 +1,4 @@
-package myshoes.com.myshoes.extras;
+package myshoes.com.myshoes.utils;
 
 import android.app.Application;
 

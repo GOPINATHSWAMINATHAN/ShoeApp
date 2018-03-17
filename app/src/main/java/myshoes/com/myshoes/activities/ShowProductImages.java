@@ -15,9 +15,9 @@ import java.util.List;
 
 import myshoes.com.myshoes.R;
 import myshoes.com.myshoes.adapters.GalleryAdapter;
-import myshoes.com.myshoes.extras.DiscreteScrollViewOptions;
 import myshoes.com.myshoes.model.Gallery;
 import myshoes.com.myshoes.model.Image;
+import myshoes.com.myshoes.utils.DiscreteScrollViewOptions;
 
 /**
  * Created by gopinath on 12/02/18.

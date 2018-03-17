@@ -1,4 +1,4 @@
-package myshoes.com.myshoes.extras;
+package myshoes.com.myshoes.utils;
 
 import android.content.Context;
 import android.content.DialogInterface;
@@ -28,12 +28,12 @@ public class DiscreteScrollViewOptions {
 
     private final String KEY_TRANSITION_TIME;
 
-    public static void init(Context context) {
-        instance = new DiscreteScrollViewOptions(context);
-    }
-
     private DiscreteScrollViewOptions(Context context) {
         KEY_TRANSITION_TIME = context.getString(R.string.pref_key_transition_time);
+    }
+
+    public static void init(Context context) {
+        instance = new DiscreteScrollViewOptions(context);
     }
 
     public static void configureTransitionTime(DiscreteScrollView scrollView) {

@@ -61,6 +61,7 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         holder.name.setText(shoesList.get(position).getProdName());
         holder.price.setText(String.valueOf(shoesList.get(position).getMrpPrice()));
         holder.discount.setText(String.valueOf(shoesList.get(position).getDiscountPrice()));
+
         Glide.with(context)
                 .load(shoesList.get(position).getThumbnail())
                 .into(holder.thumbnail);
