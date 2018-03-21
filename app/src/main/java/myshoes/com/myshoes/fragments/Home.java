@@ -1,5 +1,6 @@
 package myshoes.com.myshoes.fragments;
 
+import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Rect;
 import android.os.AsyncTask;
@@ -28,9 +29,10 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.ArrayList;
 
 import myshoes.com.myshoes.R;
+import myshoes.com.myshoes.activities.ProductDetails;
 import myshoes.com.myshoes.adapters.StoreAdapter;
+import myshoes.com.myshoes.model.CategoryProducts;
 import myshoes.com.myshoes.model.HomeData;
-import myshoes.com.myshoes.model.HomeShop;
 
 /**
  * Created by gopinath on 06/02/18.
@@ -40,7 +42,7 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
 
     RecyclerView recyclerView;
     TextView name, price, discount;
-    ArrayList<HomeShop> myShops;
+    ArrayList<CategoryProducts> myShops;
     ArrayList<HomeData> mHomeData;
     String setImageFlipper[];
     ProgressBar loading;
@@ -104,6 +106,8 @@ public class Home extends Fragment implements StoreAdapter.ListItemClickListener
     @Override
     public void onListItemClick(int clickedItemIndex) {
         Log.e("MY CLICK IS ", "" + clickedItemIndex);
+        Intent i = new Intent(getActivity(), ProductDetails.class);
+        startActivity(i);
         Toast.makeText(getActivity(), "clickedon" + clickedItemIndex, Toast.LENGTH_LONG).show();
     }
 

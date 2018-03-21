@@ -6,22 +6,23 @@
     android:layout_height="match_parent">
 
 
+    <android.support.v7.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp"
+        android:clipChildren="false"
+        android:clipToPadding="false"
+        android:divider="@android:color/transparent"
+        android:dividerHeight="0.0px"
+        android:elevation="20dp"
+        app:cardCornerRadius="5dp"
+        card_view:cardElevation="10dp"
+        card_view:cardPreventCornerOverlap="false">
 
-        <android.support.v7.widget.CardView
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_margin="10dp"
-            android:clipChildren="false"
-            android:clipToPadding="false"
-            android:divider="@android:color/transparent"
-            android:dividerHeight="0.0px"
-            android:elevation="20dp"
-            app:cardCornerRadius="5dp"
-            card_view:cardElevation="10dp"
-            card_view:cardPreventCornerOverlap="false">
-            <ScrollView
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
+            android:layout_height="match_parent">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
@@ -32,7 +33,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Adidas" />
+                    android:text="Adidas"
+                    android:textColor="#000000" />
 
                 <TextView
                     android:id="@+id/ratings"
@@ -41,16 +43,17 @@
                     android:layout_below="@+id/brand_name"
                     android:layout_marginLeft="10dp"
                     android:layout_marginTop="10dp"
-                    android:text="Ratings" />
+                    android:text="Ratings"
+                    android:textColor="#000000" />
 
                 <TextView
+                    android:id="@+id/final_product_price"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:layout_margin="10dp"
                     android:background="#336774"
                     android:padding="10dp"
-                    android:text="200 SAR"
                     android:textColor="#fff" />
 
                 <android.support.v7.widget.CardView
@@ -72,23 +75,39 @@
                         android:layout_width="match_parent"
                         android:layout_height="150dp"
                         android:layout_centerHorizontal="true"
-                        android:scaleType="fitXY" />
+                        android:scaleType="fitCenter" />
                 </android.support.v7.widget.CardView>
 
-                <com.hariofspades.incdeclibrary.IncDecCircular
-                    android:id="@+id/incdec"
-                    android:layout_width="100dp"
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
-                    android:layout_below="@id/image_card"
-                    app:leftButtonColorTint="@color/colorPrimaryDark"
-                    app:leftDrawable="@mipmap/minus"
-                    app:leftDrawableTint="@color/white"
-                    app:rightButtonColorTinit="@color/colorPrimary"
-                    app:rightDrawable="@drawable/plus"
-                    app:rightDrawableTint="@color/white"
-                    app:textColor="@color/white"
-                    app:textSize="34" />
+                    android:layout_below="@+id/image_card"
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal">
+
+                    <ImageButton
+                        android:id="@+id/cart_decrement"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/round_butotn"
+                        android:src="@drawable/ic_minus_white_24dp" />
+
+                    <TextView
+                        android:id="@+id/quantity"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp" />
+
+                    <ImageButton
+                        android:id="@+id/cart_increment"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:background="@drawable/round_butotn"
+                        android:src="@drawable/ic_add_white_24dp" />
+
+                </LinearLayout>
 
                 <TextView
                     android:id="@+id/description"
@@ -96,27 +115,23 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@id/image_card"
                     android:layout_margin="10dp"
-                    android:text="Description" />
+                    android:text="Description"
+                    android:textColor="#000000" />
 
                 <TextView
                     android:id="@+id/description_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/description"
-                    android:layout_margin="10dp"
-                    android:text="Lorem ipsum dolor sit amet, consectiaopthasfhaishfphasdpfhasphfdpasohfdpoashfdpohasdfpohasfdphaspdfhasphfdasphf
-Lorem ipsum dolor sit amet, consectiaopthasfhaishfphasdpfhasphfdpasohfdpoashfdpohasdfpohasfdphaspdfhasphfdasphf
-Lorem ipsum dolor sit amet, consectiaopthasfhaishfphasdpfhasphfdpasohfdpoashfdpohasdfpohasfdphaspdfhasphfdasphf
-Lorem ipsum dolor sit amet, consectiaopthasfhaishfphasdpfhasphfdpasohfdpoashfdpohasdfpohasfdphaspdfhasphfdasphf" />
+                    android:layout_margin="10dp" />
 
             </RelativeLayout>
-            </ScrollView>
-        </android.support.v7.widget.CardView>
-
+        </ScrollView>
+    </android.support.v7.widget.CardView>
 
 
     <android.support.design.widget.BottomNavigationView
-        android:id="@+id/navigation"
+        android:id="@+id/purchase_navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"

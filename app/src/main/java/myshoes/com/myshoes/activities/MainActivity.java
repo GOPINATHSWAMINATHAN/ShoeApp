@@ -41,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
                             toolBar.setTitle(s);
                             fragment = new Home();
                             loadFragment(fragment);
-
                             return true;
                         case R.id.categories:
                             title = "Categories";
@@ -54,13 +53,13 @@ public class MainActivity extends AppCompatActivity {
                             // toolBar.setTitle("Categories");
                             return true;
                         case R.id.cart:
-                            title = "Cart";
+                            title = "CartAdapter";
                             SpannableString s2 = new SpannableString(title);
                             s2.setSpan(new ForegroundColorSpan(Color.BLACK), 0, title.length(), Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
                             toolBar.setTitle(s2);
                             fragment = new Cart();
                             loadFragment(fragment);
-                            //toolBar.setTitle("Cart");
+                            //toolBar.setTitle("CartAdapter");
                             return true;
                         case R.id.profile:
                             title = "Profile";
@@ -81,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                             // toolBar.setTitle("Orders");
                             return true;
                     }
-
                     return false;
                 }
             };

@@ -1,6 +1,7 @@
 package myshoes.com.myshoes.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.support.v7.widget.CardView;
@@ -22,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import myshoes.com.myshoes.R;
+import myshoes.com.myshoes.activities.ProductDetails;
 import myshoes.com.myshoes.model.HomeData;
 
 /**
@@ -45,11 +47,19 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         final View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.store_home, parent, false);
-        ViewHolder myViewHolder = new ViewHolder(itemView);
+        final ViewHolder myViewHolder = new ViewHolder(itemView);
         itemView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(context, "Item clicked is true", Toast.LENGTH_LONG).show();
+                Intent i = new Intent(context, ProductDetails.class);
+                i.putExtra("thumbnail", shoesList.get(myViewHolder.getAdapterPosition()).getThumbnail());
+                i.putExtra("productname", shoesList.get(myViewHolder.getAdapterPosition()).getProdName());
+                i.putExtra("description", shoesList.get(myViewHolder.getAdapterPosition()).getDescription());
+                i.putExtra("price", String.valueOf(shoesList.get(myViewHolder.getAdapterPosition()).getDiscountPrice()));
+                i.putExtra("image1", shoesList.get(myViewHolder.getAdapterPosition()).getImages().get(0));
+                i.putExtra("image2", shoesList.get(myViewHolder.getAdapterPosition()).getImages().get(1));
+                context.startActivity(i);
+                Toast.makeText(context, "Item clicked is true" + myViewHolder.getLayoutPosition(), Toast.LENGTH_LONG).show();
             }
         });
         return myViewHolder;
@@ -129,6 +139,8 @@ public class StoreAdapter extends RecyclerView.Adapter<StoreAdapter.ViewHolder> 
         public void onClick(View v) {
             int clickedPosition = getLayoutPosition();
             mOnClickListener.onListItemClick(clickedPosition);
+
+
             Toast.makeText(context, "Item clicked is true", Toast.LENGTH_LONG).show();
         }
     }
