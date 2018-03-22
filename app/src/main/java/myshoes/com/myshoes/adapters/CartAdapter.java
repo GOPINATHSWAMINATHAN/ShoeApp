@@ -83,6 +83,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                     holder.price.setText(String.valueOf(productPrice) + " SAR");
                     new CartDbHelper(context).updatePrice(productPrice, position);
                     new CartDbHelper(context).updateQuantity(productQuantities, position);
+                    doFragmentTransact();
                 } else {
                     holder.decrement.setEnabled(true);
                     productQuantities--;
@@ -100,7 +101,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                 try {
                     boolean isSuccessful = new CartDbHelper(context).deleteCartProduct(cartList.get(position).getProductId());
                     if (isSuccessful) {
-
+                        doFragmentTransact();
                         removeAt(holder.getAdapterPosition());
                         if (cartList.size() == 0) {
                             Toast.makeText(context, "EMPTY CART", Toast.LENGTH_LONG).show();
@@ -110,14 +111,18 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.CartViewHolder
                         Log.e("DELETE QUERY", "NOT SUCCESSFULL" + isSuccessful);
                     }
                 } catch (Exception e) {
-                    FragmentTransaction transaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
-                    transaction.replace(R.id.frame_container, new myshoes.com.myshoes.fragments.Cart());
-                    transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-                    transaction.addToBackStack(null);
-                    transaction.commit();
+                    doFragmentTransact();
                 }
             }
         });
+    }
+
+    void doFragmentTransact() {
+        FragmentTransaction transaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+        transaction.replace(R.id.frame_container, new myshoes.com.myshoes.fragments.Cart());
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.addToBackStack(null);
+        transaction.commit();
     }
 
     //animation for recyclerview while populating views

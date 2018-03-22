@@ -44,7 +44,7 @@ public class Cart extends Fragment implements StoreAdapter.ListItemClickListener
         RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(mLayoutManager);
         recyclerView.setAdapter(cAdapter);
-
+        total.setText(String.valueOf(grandTotal(mCartProducts)));
         return v;
     }
 
