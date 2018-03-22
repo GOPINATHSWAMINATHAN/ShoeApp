@@ -11,21 +11,6 @@
         android:gravity="center"
         android:orientation="horizontal">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:text="TOTAL PRICE: "
-            android:textColor="#000000"
-            android:textStyle="bold|italic" />
-
-        <TextView
-            android:id="@+id/cart_total_price"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:textColor="#000000"
-            android:textStyle="italic|bold" />
 
         <Button
             android:id="@+id/buy_now"
@@ -34,6 +19,7 @@
             android:layout_margin="10dp"
             android:background="#df6224"
             android:elevation="10dp"
+            android:shadowColor="@android:color/black"
             android:text="BUY NOW"
             android:textColor="#fff" />
     </LinearLayout>
