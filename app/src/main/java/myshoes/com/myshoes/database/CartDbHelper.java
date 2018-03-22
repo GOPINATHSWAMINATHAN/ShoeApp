@@ -56,28 +56,37 @@ public class CartDbHelper extends SQLiteOpenHelper {
     public List<Cart> getData() {
         List<Cart> cartList = new ArrayList<>();
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor res = db.rawQuery(SELECT_DB, null);
-        if (res.moveToFirst()) {
-            do {
-                Cart myCart = new Cart();
-                myCart.setProductId(res.getString(0));
-                myCart.setProductName(res.getString(1));
-                myCart.setProductDescription(res.getString(2));
-                myCart.setProductPrice(res.getString(3));
-                myCart.setImageUrl(res.getString(4));
-                myCart.setProductQuantity(res.getString(5));
-                cartList.add(myCart);
+        try {
+            Cursor res = db.rawQuery(SELECT_DB, null);
+            if (res.moveToFirst()) {
+                do {
+                    Cart myCart = new Cart();
+                    myCart.setProductId(res.getString(0));
+                    myCart.setProductName(res.getString(1));
+                    myCart.setProductDescription(res.getString(2));
+                    myCart.setProductPrice(res.getString(3));
+                    myCart.setImageUrl(res.getString(4));
+                    myCart.setProductQuantity(res.getString(5));
+                    cartList.add(myCart);
+                }
+                while (res.moveToNext());
+
+
             }
-            while (res.moveToNext());
-
-
+        } finally {
+            db.close();
         }
         return cartList;
     }
 
     public int numberOfRows() {
         SQLiteDatabase db = this.getReadableDatabase();
-        int numRows = (int) DatabaseUtils.queryNumEntries(db, CartContract.CartEntry.TABLE_NAME);
+        int numRows;
+        try {
+            numRows = (int) DatabaseUtils.queryNumEntries(db, CartContract.CartEntry.TABLE_NAME);
+        } finally {
+            db.close();
+        }
         return numRows;
     }
 
@@ -91,12 +100,27 @@ public class CartDbHelper extends SQLiteOpenHelper {
         return true;
     }
 
+    public boolean updatePrice(int price, int position) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        try {
+            db.execSQL("UPDATE " + CartContract.CartEntry.TABLE_NAME + " SET " + CartContract.CartEntry.COLUMN_PRODUCT_PRICE + "=" + price + " where " + CartContract.CartEntry._ID + "=" + position);
+        } catch (Exception e) {
+            db.close();
+        }
+        return true;
+    }
+
     //update tablename set quantity=3 where id=position
     public boolean updateQuantity(int quantity, int position) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.execSQL("UPDATE " + CartContract.CartEntry.TABLE_NAME + " SET " + CartContract.CartEntry.COLUMN_PRODUCT_QUANTITY + "=" + quantity + " where " + CartContract.CartEntry._ID + "=" + position);
+        try {
+            db.execSQL("UPDATE " + CartContract.CartEntry.TABLE_NAME + " SET " + CartContract.CartEntry.COLUMN_PRODUCT_QUANTITY + "=" + quantity + " where " + CartContract.CartEntry._ID + "=" + position);
+        } finally {
+            db.close();
+        }
         return true;
     }
+
 
     public boolean deleteEntireCart() {
         SQLiteDatabase db = this.getWritableDatabase();
